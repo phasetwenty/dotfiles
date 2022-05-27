@@ -3,10 +3,10 @@
 # Setup global variables that I use or use downstream
 export EDITOR=vim
 
-if [ ! -d "$HOME/Workspace" ]; then
-	mkdir "$HOME/Workspace"
+if [ ! -d "$HOME/workspace" ]; then
+	mkdir "$HOME/workspace"
 fi
-export WORKSPACE="$HOME/Workspace"
+export WORKSPACE="$HOME/workspace"
 
 [ -d "$WORKSPACE/repos" ] && export REPOS="$WORKSPACE/repos"
 [ -d "$WORKSPACE/hotpads" ] && export HP="$WORKSPACE/hotpads"
@@ -27,10 +27,6 @@ SET_JAVA_HOME() {
 }
 SET_JAVA_HOME
 
-if [ -d "$HOME/Workspace/repos" ]; then
-    export REPOS="$HOME/Workspace/repos"
-    export GUARD_DIR="$REPOS"
-fi
 LS_CMD_set () {
     # Ensures that our `ls` command is the one that can group directories. If it's not available, an error message is
     # printed. End result is that LS_CMD is set.
