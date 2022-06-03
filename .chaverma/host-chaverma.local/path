@@ -1,0 +1,21 @@
+#!/bin/bash
+#
+paths=(
+    "$HOME/bin"
+    "/usr/local/bin"
+    "/usr/local/share/python"
+    "/usr/bin"
+    "/usr/sbin"
+    "/bin"
+    "/sbin"
+)
+
+export PATH=""
+for path in "${paths[@]}"; do
+  [ -d "$path" ] && PATH="$PATH":"$path"
+done
+PATH=${PATH:1:${#PATH}}  # In case you forget, this trims the leading ":"
+
+export PATH
+
+

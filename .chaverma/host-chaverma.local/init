@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# Case insensitive filenames for globbing
+shopt -s nocaseglob
+
+# Case insensitive filenames for tab completion
+bind 'set completion-ignore-case on'
+
+# Used to use a file for setting aliases but it's no longer useful.
+# Trailing space is load-bearing!
+alias s='sudo '
+
+# Complicated initialization, extracted to separate modules for readability.
+execute_init_files() {
+    # Order matters.
+    local init_files=(
+        "path"
+        "variables"
+        "prompt"
+    )
+    local path_base="$HOME/.chaverma/host-chaverma.local"
+
+    for file in "${init_files[@]}"; do
+        if [ -f $file ]; then
+            # shellcheck source=/dev/null
+            . "$path_base/$file"
+        else
+            >&2 echo "Fatal error configuring shell: $path_base/$file does not exist."
+        fi
+    done
+
+}
+
+set_up_custom_dirs
+
+execute_init_files

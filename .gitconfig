@@ -1,0 +1,30 @@
+[user]
+	name = Christopher Haverman
+	email = chris.haverman@gmail.com
+[alias]
+	alias = !git config --get-regexp 'alias.*'
+	amend-quick = commit -a --amend --no-edit
+	co = checkout
+	diffhead = diff HEAD^ HEAD
+	ft = !git fetch && git status
+	st = status
+	upstream = branch --set-upstream-to
+[mergetool]
+	keepBackup = true
+[color]
+	ui = true
+[core]
+	excludesfile = /Users/chaverman/.gitrc/gitignore_global
+	pager = less
+; May be necessary?
+;[diff]
+;    external = git-diff
+[pull]
+    rebase = true
+[merge]
+	conflictstyle = diff3
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[push]
+	default = current

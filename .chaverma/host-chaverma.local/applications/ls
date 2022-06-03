@@ -1,0 +1,26 @@
+#!/bin/bash
+
+LS_CMD="$(type -P ls) -G --group-directories-first --color=always"
+export LS_CMD
+
+# Dependencies
+# LESS (set by applications/less)
+ls_with_arg() {
+  # $1 ls args
+  # $2 target or empty
+  #
+  # Mimicking:
+  # $ ls <args> <target> | less
+  #
+  if [ -z "$2" ]; then
+    $LS_CMD "$1" | less
+  else
+    $LS_CMD "$1" "$2" | less
+  fi
+}
+
+alias ll='ls_with_arg -l' # probably don't need the extra L but I'm used to it.
+alias la='ls_with_arg -la'
+alias lhl='ls_with_arg -hl'
+
+

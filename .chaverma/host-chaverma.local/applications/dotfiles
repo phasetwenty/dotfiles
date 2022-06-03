@@ -1,0 +1,12 @@
+#!/bin/bash
+#
+init_dotfiles_cmd () {
+    # Using a function for namespacing.
+    local dotfiles_repo_name='.dotfiles-repo'  # Name of the directory that holds our bare repo
+    local dotfiles_alias="git --git-dir=$HOME/$dotfiles_repo_name/ --work-tree=$HOME"
+
+    alias dotfiles="$dotfiles_alias"
+    # Using this alias right away caused an error message to pop up.
+    $dotfiles_alias config --local status.showUntrackedFiles no
+}
+init_dotfiles_cmd

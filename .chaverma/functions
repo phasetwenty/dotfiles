@@ -1,0 +1,26 @@
+#!/bin/bash
+
+
+hex_string() {
+  # $1 length
+  < /dev/urandom env LC_CTYPE=C tr -cd 'a-f0-9' | head -c "$1"
+}
+
+is_interactive (){
+    if [ -z "$PS1" ]; then
+        return 1;
+    else
+        return 0;
+    fi
+}
+
+set_up_custom_dirs(){
+    local custom_dirs=(
+        "bin"
+        "Workspace/repos"
+    )
+    for name in "${custom_dirs[@]}"; do
+        [ ! -d "$HOME/$name" ] && mkdir -p "$HOME/$name"
+    done
+
+}

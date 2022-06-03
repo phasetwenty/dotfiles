@@ -1,0 +1,4 @@
+#!/bin/bash
+#
+# These are the options I want active every time I run less.
+export LESS="-FXR"

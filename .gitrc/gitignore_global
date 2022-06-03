@@ -1,0 +1,12 @@
+.DS_Store*
+.idea
+vendor/
+*sublime*
+*vagrant*
+.buildpath
+.project
+.settings
+id_rsa*
+.pydevproject
+*.pyc
+*.orig

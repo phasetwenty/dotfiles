@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Options that apply to the shell itself, typically the same across environments and non/interactivity.
+
+# .bash_history options
+export HISTFILESIZE=2000
+#  don't put duplicate lines in the history. See bash(1) for more options
+#  don't overwrite GNU Midnight Commander's setting of `ignorespace'.
+export HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
+#  ... or force ignoredups and ignorespace
+export HISTCONTROL=ignoreboth
+
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+# Silence the Catalina and beyond shell warning
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
+umask 002

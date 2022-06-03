@@ -1,0 +1,4 @@
+#!/bin/bash
+#
+# shellcheck disable=SC2139
+alias grep="$(type -P grep) --color=always"

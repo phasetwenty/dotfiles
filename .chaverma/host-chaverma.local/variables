@@ -1,0 +1,9 @@
+#!/bin/bash
+#
+# Setup global variables that I use or use downstream
+export EDITOR=vim
+# Useful for creating the remote on new systems.
+export DOTFILES_REMOTE="git@github.com:phasetwenty/dotfiles.git"
+
+export WORKSPACE="$HOME/Workspace"
+export REPOS="$WORKSPACE/repos"
