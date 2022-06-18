@@ -4,12 +4,13 @@
 #
 CHAVERMA_HOST_FILE=".chaverma-host"
 
-if [ ! -d ".chaverma" ]; then
+# Note that using relative paths here can get you into trouble. Be sure to use absolute.
+if [ ! -d "$HOME/.chaverma" ]; then
     >&2 echo "Fatal error configuring shell: missing .chaverma directory."
     return 1
 fi
 
-if [ -r ".chaverma/functions" ]; then
+if [ -r "$HOME/.chaverma/functions" ]; then
     . .chaverma/functions
 else
     >&2 echo "Fatal error configuring shell: functions file missing."
@@ -17,7 +18,7 @@ else
 fi
 
 
-if [ -r ".chaverma/all_shell_options" ]; then
+if [ -r "$HOME/.chaverma/all_shell_options" ]; then
     . .chaverma/all_shell_options
 else
     >&2 echo "Fatal error configuring shell: shell options file missing."

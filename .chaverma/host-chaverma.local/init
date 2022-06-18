@@ -25,7 +25,7 @@ execute_init_files() {
     local path_base="$HOME/.chaverma/host-chaverma.local"
 
     for file in "${init_files[@]}"; do
-        if [ -f $file ]; then
+        if [ -f "$path_base/$file" ]; then
             # shellcheck source=/dev/null
             . "$path_base/$file"
         else
