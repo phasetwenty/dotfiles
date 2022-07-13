@@ -33,6 +33,11 @@ execute_init_files() {
         fi
     done
 
+    # Applications
+    for app in "$path_base"/applications/*; do
+        # shellcheck source=/dev/null
+      . "$app"
+    done
 }
 
 set_up_custom_dirs
