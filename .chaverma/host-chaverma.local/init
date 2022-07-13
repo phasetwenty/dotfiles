@@ -25,11 +25,11 @@ execute_init_files() {
     local path_base="$HOME/.chaverma/host-chaverma.local"
 
     for file in "${init_files[@]}"; do
-        if [ -f "$path_base/$file" ]; then
+        if [ -r "$path_base/$file" ]; then
             # shellcheck source=/dev/null
             . "$path_base/$file"
         else
-            >&2 echo "Fatal error configuring shell: $path_base/$file does not exist."
+            >&2 echo "Fatal error configuring shell: $path_base/$file does not exist, or is unreadable."
         fi
     done
 
