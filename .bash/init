@@ -18,7 +18,7 @@ umask 002
 # I'll need this if it doesn't already exist.
 custom_dirs=(
     "bin"
-    "Workspace"
+    "workspace"
 )
 for name in ${custom_dirs[@]}; do
     [ ! -d "$HOME/$name" ] && mkdir "$HOME/$name"
@@ -69,7 +69,9 @@ for app in ~/.bash/applications/*; do
   . $app
 done
 
-# Hotpads additions
-# bash_completion initialization.
-# [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
-. "$HOME/.bash/bash_hotpads_mac"
+# bash-completion initialization
+if [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]]; then
+  . "/opt/homebrew/etc/profile.d/bash_completion.sh"
+else
+  >&2 echo "brew bash-completion attempted but not available."
+fi

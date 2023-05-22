@@ -8,10 +8,7 @@ if [ ! -d "$HOME/workspace" ]; then
 fi
 export WORKSPACE="$HOME/workspace"
 
-[ -d "$WORKSPACE/repos" ] && export REPOS="$WORKSPACE/repos"
-[ -d "$WORKSPACE/hotpads" ] && export HP="$WORKSPACE/hotpads"
-[ -d "$WORKSPACE/hotpads/transactions/rent-payment" ] && export RP="$WORKSPACE/hotpads/transactions/rent-payment"
-[ -d "$HOME/Google Drive (chaverman@zillowgroup.com)" ] && export GDRIVE_ZG="$HOME/Google Drive (chaverman@zillowgroup.com)"
+[ -d "$WORKSPACE/transactions/rent-payment" ] && export RP="$WORKSPACE/transactions/rent-payment"
 [ -d "$HOME/Library/Android/sdk" ] && export ANDROID_HOME="$HOME/Library/Android/sdk"
 
 # Added by rental platform

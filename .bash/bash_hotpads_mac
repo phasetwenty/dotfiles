@@ -1,6 +1,0 @@
-export ADMIN_EMAIL=MYEMAIL
-export HOSTNAME=`hostname`
-export PATH=$PATH:$JAVA_HOME/bin:.:~/workspace/devops/bin
-export NODE_TLS_REJECT_UNAUTHORIZED='0'
-export apiTarget=https://localhost:8443
-

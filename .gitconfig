@@ -1,5 +1,5 @@
 [user]
-	name = Christopher Haverman
+	name = chaverman
 	email = chaverman@zillowgroup.com
 [alias]
 	alias = !git config --get-regexp 'alias.*'
@@ -19,11 +19,13 @@
 [core]
 	excludesfile = /Users/chaverman/.gitrc/gitignore_global
 	pager = less
+	ignorecase = false
 ; May be necessary?
 ;[diff]
 ;    external = git-diff
 [pull]
     rebase = true
+	ff = only
 [merge]
 	conflictstyle = diff3
 [difftool "sourcetree"]

@@ -9,7 +9,7 @@ paths=(
     "/usr/sbin"
     "/bin"
     "/sbin"
-	"$HOME/Workspace/hotpads/devops/bin"
+	"$HOME/workspace/devops/bin"
 )
 
 export PATH=""

@@ -7,3 +7,6 @@ else
   . ~/.bash/init
 fi
 
+eval "$(/opt/homebrew/bin/brew shellenv)"
+source /opt/homebrew/etc/bash_completion
+source ~/.bash_hotpads_mac
