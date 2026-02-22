@@ -1,8 +1,8 @@
 #!/bin/bash
 #
 nvm_init () {
-	local path_to_nvm_sh="/usr/local/opt/nvm/nvm.sh"
     local path_to_nvm_home="$HOME/.nvm"
+	local path_to_nvm_sh="$path_to_nvm_home/nvm.sh"
 
 	if [ ! -f "$path_to_nvm_sh" ]; then
 		>&2 echo "NVM does not exist on this system, no NVM commands will be available."
