@@ -61,17 +61,6 @@ set_git_branch() {
     fi
 }
 
-# the name of the activated virtual env
-set_virtual_env_base() {
-    unset VIRTUAL_ENV_BASE
-    local venv=`basename "$VIRTUAL_ENV"`
-
-    if test $venv
-        then
-            VIRTUAL_ENV_BASE="($venv) "
-    fi
-}
-
 # hostname
 set_hostname() {
   unset HOST_FOR_PROMPT
@@ -84,14 +73,12 @@ set_hostname() {
 
 }
 
-
 update_prompt() {
     set_new_pwd
     set_git_branch
-    set_virtual_env_base
     set_hostname
 
-    PS1="${HOST_FOR_PROMPT} ${VIRTUAL_ENV_BASE}${GIT_BRANCH}${Y}${NEW_PWD}${NONE}\n\$ "
+    PS1="${HOST_FOR_PROMPT} ${GIT_BRANCH}${Y}${NEW_PWD}${NONE}\n\$ "
 }
 
 PROMPT_COMMAND=update_prompt
