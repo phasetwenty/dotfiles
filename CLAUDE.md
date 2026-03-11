@@ -8,7 +8,7 @@ Transform these dotfiles into a conventional bash setup:
 
 - **`.bashrc` and `.bash_profile` should be distinct** and serve their proper roles: `.bash_profile` for login shells (env vars, PATH), `.bashrc` for interactive shells (aliases, prompt, completions).
 - **Eliminate the `~/.bash/init` indirection** — the two entry point files should contain their configuration directly, or source a small number of clearly-scoped files, rather than delegating everything to a third file.
-- The `~/.bash/` framework and its modules can be retained, reorganized, or collapsed as needed to support the above — the goal is conventional structure, not necessarily fewer files.
+- The `~/.bash/` framework and its modules will be retained, reorganized, or collapsed as needed to support the above — the goal is conventional structure, which will also produce fewer files.
 
 ## Files In Scope
 

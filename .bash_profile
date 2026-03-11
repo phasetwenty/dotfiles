@@ -1,11 +1,39 @@
 #!/bin/bash
 #
-# Shuttle initialization to my own framework
-if [ ! -f ~/.bash/init ]; then
-  >&2 echo "bash init not available!"
-else
-  . ~/.bash/init
-fi
+# .bash_profile, configuration for login shells.
+#
+_set_path () {
+  local paths=(
+    "$HOME/bin"
+    "/usr/local/bin"
+    "/usr/local/opt/openjdk/bin"
+    "$HOME/.composer/vendor/bin"
+    "$HOME/.rvm/bin"
+    "/usr/local/sbin"
+    "/usr/bin"
+    "/usr/sbin"
+    "/bin"
+    "/sbin"
+    "$HOME/.poetry/bin"
+  )
 
+  export PATH=""
+  for path in ${paths[@]}; do
+    [ -d "$path" ] && PATH="$PATH":"$path"
+  done
+  PATH=${PATH:1:${#PATH}}  # In case you forget, this trims the leading ":"
 
-export PATH="$HOME/.poetry/bin:$PATH"
+  export PATH
+}
+_set_path
+
+_set_variables () {
+  export EDITOR=vim
+  export DOTFILES_REMOTE="https://github.com/phasetwenty/dotfiles.git"
+  # Stupid MacOS warning
+  export BASH_SILENCE_DEPRECATION_WARNING=1
+}
+_set_variables
+
+# From here it converges to configuration for login shells
+[[ $- == *i* ]] && [ -f ~/.bashrc ] && . ~/.bashrc
