@@ -30,6 +30,22 @@ bind 'set completion-ignore-case on'
 # -R: display raw control characters, i.e., disable color formatting
 export LESS="-FXR"
 #
+# User functions
+#
+# Generates a random string of hex digits. I've used this in the past to tokenize informal secrets
+hex_string() {
+  # $1 length
+  cat /dev/urandom | env LC_CTYPE=ALL tr -cd 'a-f0-9' | head -c "$1"
+}
+
+# Generate a random number up to a parameterize upper bound
+rand() {
+    # $1 upper bound
+    [ -z $1 ] && echo "Usage: rand N where N is the upper bound to use" && return
+    echo $(($RANDOM % $1))
+}
+
+#
 # Set my home directories
 #
 _home_dirs () {
@@ -138,3 +154,9 @@ _init_iterm2 () {
   fi
 }
 _init_iterm2
+
+#
+# Homebrew specifics
+#
+[ -e /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
+[ -e /opt/homebrew/etc/bash_completion ] && . /opt/homebrew/etc/bash_completion
