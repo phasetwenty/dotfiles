@@ -29,7 +29,6 @@ _set_path
 
 _set_variables () {
   export EDITOR=vim
-  export DOTFILES_REMOTE="https://github.com/phasetwenty/dotfiles.git"
   # Stupid MacOS warning
   export BASH_SILENCE_DEPRECATION_WARNING=1
 }

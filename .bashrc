@@ -63,9 +63,17 @@ _home_dirs () {
 }
 _home_dirs
 
+#
+# Homebrew specifics
+#
+[ -e /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
+[ -e /opt/homebrew/etc/bash_completion ] && . /opt/homebrew/etc/bash_completion
+#
 _set_ls () {
   # Ensures that my `ls` command is the one that can group directories. If it's not available,
   # an error message is printed. End result is that LS_CMD is set.
+  #
+  # This depends on the homebrew environment getting set up correctly, otherwise the path to `gls` doesn't resolve.
   #
   local path=$(type -P gls)
   if [ $? ]; then
@@ -99,6 +107,7 @@ ls_with_arg () {
 }
 
 alias cleano='find . -name "*.orig" -exec rm {} \;'
+alias jb-delete-cache='rm -rf ~/Library/Caches/JetBrains/'
 alias ll='ls_with_arg -l' # probably don't need the extra L but I'm used to it.
 alias la='ls_with_arg -la'
 alias lhl='ls_with_arg -hl'
@@ -125,6 +134,7 @@ _init_dotfiles () {
     # Sets another alias "dotfiles"
     #
     # Using a function for namespacing.
+    export DOTFILES_REMOTE="https://github.com/phasetwenty/dotfiles.git"
     local dotfiles_repo_name='.dotfiles-repo'  # Name of the directory that holds our bare repo
     local dotfiles_alias="git --git-dir=$HOME/$dotfiles_repo_name/ --work-tree=$HOME"
 
@@ -158,9 +168,8 @@ _init_iterm2 () {
   fi
 }
 _init_iterm2
-
 #
-# Homebrew specifics
+# Work specifics
 #
-[ -e /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
-[ -e /opt/homebrew/etc/bash_completion ] && . /opt/homebrew/etc/bash_completion
+[ -d "$HOME/workspace/rpjava/app/invoice-delivery/server" ] && export IDEL="$HOME/workspace/rpjava/app/invoice-delivery/server"
+export PODMAN_APPS="memcached percona redis"
