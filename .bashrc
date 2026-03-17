@@ -21,8 +21,12 @@ bind 'set completion-ignore-case on'
 #
 # application configuration
 #
-#
+# Unfortunately, this is currently messing up Claude Code. When it shells out for
+# some activity, the color option is inherited and creates errors in the subshell.
+# I've been working around by using:
+# $ unset GREP_OPTIONS; claude
 [[ $- == *i* ]] && export GREP_OPTIONS='--color=always'
+#
 # -F: exit if less than one screen long
 # -X: verbatim, "Disables sending the termcap initialization and deinitialization strings to the
 #     terminal. This is sometimes desirable if the deinitialization string does something
