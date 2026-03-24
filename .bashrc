@@ -106,7 +106,7 @@ ls_with_arg () {
   fi
 }
 
-alias claude='GREP_OPTIONS= claude'
+alias claude='GREP_OPTIONS= $(which claude)'
 alias cleano='find . -name "*.orig" -exec rm {} \;'
 alias jb-delete-cache='rm -rf ~/Library/Caches/JetBrains/'
 alias ll='ls_with_arg -l' # probably don't need the extra L but I'm used to it.
