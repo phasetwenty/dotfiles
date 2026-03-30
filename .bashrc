@@ -159,6 +159,19 @@ _init_git () {
 }
 _init_git
 
+_init_git_email () {
+  #
+  # Git email
+  # On work machine it's my work email, at home it's another email
+  #
+  if [[ $(hostname) == "ZG13786" ]]; then
+      git config --global user.email "chaverman@zillowgroup.com"
+  else
+      git config --global user.email "chris.haverman@gmail.com"
+  fi
+}
+_init_git_email
+
 _init_iterm2 () {
   local _path_to_file="$HOME/.bash/applications/iterm2_shell_integration.bash"
 
