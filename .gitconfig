@@ -1,6 +1,5 @@
 [user]
 	name = Christopher Haverman
-	email = chaverma@alumni.uci.edu
 [alias]
 	alias = !git config --get-regexp 'alias.*'
     cdup = !cd $(git rev-parse --show-cdup)
