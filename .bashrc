@@ -75,22 +75,20 @@ _set_ls () {
   #
   # This depends on the homebrew environment getting set up correctly, otherwise the path to `gls` doesn't resolve.
   #
+  LS_CMD="/bin/ls -G --color=always"
   local path=$(type -P gls)
   if [ $? ]; then
       export LS_CMD="$path -G --group-directories-first --color=always"
       return
   fi
   >&2 echo "gls missing; no directory grouping is possible."
-  export LS_CMD="/bin/ls -G --color=always"
+  export LS_CMD
 }
 _set_ls
 
 #
 # Aliases
 #
-# Trailing space is load-bearing!
-alias s='sudo '
-
 ls_with_arg () {
   # Expects LS_CMD to be set already, and LESS to be set for
   # $1 ls args
@@ -112,6 +110,8 @@ alias jb-delete-cache='rm -rf ~/Library/Caches/JetBrains/'
 alias ll='ls_with_arg -l' # probably don't need the extra L but I'm used to it.
 alias la='ls_with_arg -la'
 alias lhl='ls_with_arg -hl'
+# Trailing space is load-bearing!
+alias s='sudo '
 #
 # Prompt
 # Prompt is so complicated I'm inclined to keep it as a separate file.
@@ -130,6 +130,20 @@ _init_prompt
 #
 # Applications
 #
+init_nvm () {
+  # Initializing NVM
+  # As you can see, this function isn't called, it's being saved for on-demand use. 2 reasons for this:
+  # 1. The load time on the script is rough; seconds-scale
+  # 2. I use nvm rarely; months with no use then a week or so
+  #
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] || return
+  export NVM_DIR="$HOME/.nvm"
+  # This loads nvm
+  . "/opt/homebrew/opt/nvm/nvm.sh"
+  # This loads nvm bash_completion
+  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && . "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
+}
+
 _init_dotfiles () {
     #
     # Sets another alias "dotfiles"
@@ -182,6 +196,7 @@ _init_iterm2 () {
   fi
 }
 _init_iterm2
+
 #
 # Work specifics
 #

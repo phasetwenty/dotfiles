@@ -7,14 +7,13 @@ _set_path () {
     "$HOME/bin"
     "/usr/local/bin"
     "/usr/local/opt/openjdk/bin"
-    "$HOME/.composer/vendor/bin"
+    "$HOME/go/bin"
     "$HOME/.rvm/bin"
     "/usr/local/sbin"
     "/usr/bin"
     "/usr/sbin"
     "/bin"
     "/sbin"
-    "$HOME/.poetry/bin"
   )
 
   export PATH=""
