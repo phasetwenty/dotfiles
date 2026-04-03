@@ -24,7 +24,7 @@ bind 'set completion-ignore-case on'
 # Unfortunately, this is currently messing up Claude Code. When it shells out for
 # some activity, the color option is inherited and creates errors in the subshell.
 # I've been working around by using:
-# $ unset GREP_OPTIONS; claude
+# $ GREP_OPTIONS= claude
 [[ $- == *i* ]] && export GREP_OPTIONS='--color=always'
 #
 # -F: exit if less than one screen long
@@ -69,47 +69,46 @@ _home_dirs
 [ -e /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
 [ -e /opt/homebrew/etc/bash_completion ] && . /opt/homebrew/etc/bash_completion
 #
-_set_ls () {
-  # Ensures that my `ls` command is the one that can group directories. If it's not available,
-  # an error message is printed. End result is that LS_CMD is set.
-  #
-  # This depends on the homebrew environment getting set up correctly, otherwise the path to `gls` doesn't resolve.
-  #
-  LS_CMD="/bin/ls -G --color=always"
-  local path=$(type -P gls)
-  if [ $? ]; then
-      export LS_CMD="$path -G --group-directories-first --color=always"
-      return
-  fi
-  >&2 echo "gls missing; no directory grouping is possible."
-  export LS_CMD
-}
-_set_ls
-
-#
 # Aliases
 #
-ls_with_arg () {
-  # Expects LS_CMD to be set already, and LESS to be set for
+ls_custom () {
+  # Customized ls enforcing:
+  # * Color
+  # * Directories grouped first
+  # * Paging with less
+  #
+  # It depends on an alternate build of ls coming from homebrew; if the package isn't available, 
+  # directories can't group first. This approach is iterated from my first implementation, where I
+  # check the package at shell start. I wanted to shave off some startup time so now it checks 
+  # just in time and memoizes the result.
+  #
   # $1 ls args
   # $2 target or empty
   #
-  # Mimicking:
-  # $ ls <args> <target> | less
-  #
+  if [ -z "$MY_LS" ]; then
+    local path=$(type -P gls)
+    if [ $? ]; then
+      MY_LS="$path -G --group-directories-first --color=always"
+    else
+      MY_LS="/bin/ls -G --color=always"
+      >&2 echo "gls missing; no directory grouping is possible."
+    fi
+    export MY_LS
+  fi
+
   if [ -z "$2" ]; then
-    $LS_CMD $1 | less
+    $MY_LS "$1" | less
   else
-    $LS_CMD $1 "$2" | less
+    $MY_LS "$1" "$2" | less
   fi
 }
 
 alias claude='GREP_OPTIONS= $(which claude)'
 alias cleano='find . -name "*.orig" -exec rm {} \;'
 alias jb-delete-cache='rm -rf ~/Library/Caches/JetBrains/'
-alias ll='ls_with_arg -l' # probably don't need the extra L but I'm used to it.
-alias la='ls_with_arg -la'
-alias lhl='ls_with_arg -hl'
+alias ll='ls_custom -l' # probably don't need the extra L but I'm used to it.
+alias la='ls_custom -la'
+alias lhl='ls_custom -hl'
 # Trailing space is load-bearing!
 alias s='sudo '
 #
