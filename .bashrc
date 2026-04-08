@@ -103,6 +103,8 @@ ls_custom () {
   fi
 }
 
+alias brwe='brew '
+alias rbew='brew '
 alias claude='GREP_OPTIONS= $(which claude)'
 alias cleano='find . -name "*.orig" -exec rm {} \;'
 alias jb-delete-cache='rm -rf ~/Library/Caches/JetBrains/'
