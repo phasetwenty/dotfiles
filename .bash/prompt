@@ -78,7 +78,7 @@ update_prompt() {
     set_git_branch
     set_hostname
 
-    local date_fmt="${B}\dT\tZ${NONE}"
+    local date_fmt="${B}\d \t${NONE}"
     PS1="${HOST_FOR_PROMPT} ${GIT_BRANCH}${date_fmt} ${Y}${NEW_PWD}${NONE}\n\$ "
 }
 
