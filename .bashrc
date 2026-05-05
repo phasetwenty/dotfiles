@@ -201,6 +201,7 @@ _init_iterm2
 #
 # Work specifics
 #
+[ -d "$HOME/workspace/rpjava/app/billing-automation/server" ] && export BIL="$HOME/workspace/rpjava/app/billing-automation/server"
 [ -d "$HOME/workspace/rpjava/app/invoice-delivery/server" ] && export IDEL="$HOME/workspace/rpjava/app/invoice-delivery/server"
 export PODMAN_APPS="memcached percona redis"
 [ -e "$HOME/.bash_hotpads_mac" ] && . "$HOME/.bash_hotpads_mac"
