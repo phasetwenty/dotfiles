@@ -113,6 +113,7 @@ alias la='ls_custom -la'
 alias lhl='ls_custom -hl'
 # Trailing space is load-bearing!
 alias s='sudo '
+alias subl='open -a "Sublime Text" '
 #
 # Prompt
 # Prompt is so complicated I'm inclined to keep it as a separate file.
@@ -131,6 +132,15 @@ _init_prompt
 #
 # Applications
 #
+_init_claude() {
+  export CLAUDE_DESKTOP_SETTINGS_JSON="$HOME/Library/Application Support/Claude/claude_desktop_config.json"
+  export CLAUDE_SETTINGS_JSON="$HOME/.claude/settings.json"
+  # I put this in because clicking into the window sometimes answers questions and I'm not trying to do that
+  export CLAUDE_CODE_DISABLE_MOUSE_CLICKS=1
+}
+
+_init_claude
+
 init_nvm () {
   # Initializing NVM
   # As you can see, this function isn't called, it's being saved for on-demand use. 2 reasons for this:
@@ -205,3 +215,4 @@ _init_iterm2
 [ -d "$HOME/workspace/rpjava/app/invoice-delivery/server" ] && export IDEL="$HOME/workspace/rpjava/app/invoice-delivery/server"
 export PODMAN_APPS="memcached percona redis"
 [ -e "$HOME/.bash_hotpads_mac" ] && . "$HOME/.bash_hotpads_mac"
+

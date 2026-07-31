@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Prints local branches whose commits are fully contained in the main branch.
+
+set -euo pipefail
+
+main_branch="master"
+
+git fetch --quiet origin "$main_branch"
+
+git branch --merged "origin/$main_branch" \
+    | grep -v "^\*" \
+    | grep -v "^[[:space:]]*$main_branch$" \
+    | sed 's/^[[:space:]]*//'

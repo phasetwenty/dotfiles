@@ -1,7 +1,0 @@
-#!/bin/bash
-#
-git branch -r --merged |\
-  grep -v 'master$' |\
-  grep ' chaverman' |\
-  sed -e 's/ chaverman\\///' |\
-  xargs -n 1 git push chaverman --delete

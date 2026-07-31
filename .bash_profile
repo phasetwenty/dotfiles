@@ -5,10 +5,13 @@
 _set_path () {
   local paths=(
     "$HOME/bin"
+    # Added by claude-switch installer
+    "$HOME/.local/bin"
     "/usr/local/bin"
     "/usr/local/opt/openjdk/bin"
     "$HOME/go/bin"
     "$HOME/.rvm/bin"
+    "$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
     "/usr/local/sbin"
     "/usr/bin"
     "/usr/sbin"
